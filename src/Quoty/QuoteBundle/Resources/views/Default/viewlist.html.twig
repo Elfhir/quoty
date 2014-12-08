@@ -1,3 +1,19 @@
 {# quoty/src/Quoty/QuoteBundle/Resources/views/Default/viewlist.html.twig #}
 
 {% extends "::index.html.twig" %}
+
+{% block main_container %}
+	<div class="row">
+		{# Block to repeat #}
+		<div class="q-quote-container col-xs-12 col-sm-12 col-md-4 col-lg-4 well">
+			<h2>Title</h2>
+			<blockquote>
+				<p>« Le bonheur n'est pas une destination, mais une façon de voyager.  »
+				</p>
+				<footer>
+					<cite><a href="http://evene.lefigaro.fr/citation/bonheur-destination-facon-voyager-21854.php" title="de Margaret Lee Runbeck">Margaret Lee Runbeck</a></cite>
+				</footer>
+			</blockquote>
+		</div>
+	</div>
+{% endblock %}

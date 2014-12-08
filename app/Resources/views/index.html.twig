@@ -29,10 +29,10 @@
 					<ul class="nav navbar-nav">
 						<a class="navbar-brand" href="#">Quoty</a>
 						<li class="active">
-							<a href="#">Home</a>
+							<a href="{{ path('quoty_quote_viewlist')}}">Home</a>
 						</li>
 						<li>
-							<a href="#">About</a>
+							<a href="/about">About</a>
 						</li>
 					</ul>
 				</div>
@@ -48,7 +48,7 @@
 						<h1>Great quotes</h1>
 						<p>Movies, novels, leaders, scientifics, sportsman ...</p>
 						<p>
-							<a href="/quotes" class="btn btn-primary btn-lg">Learn more</a>
+							<a href="{{ path('quoty_quote')}}" class="btn btn-primary btn-lg">Learn more</a>
 						</p>
 					</div>
 				</div>
