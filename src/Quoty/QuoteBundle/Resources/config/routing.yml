@@ -1,0 +1,11 @@
+quoty_quote_viewlist:
+    path:     /
+    defaults: { _controller: QuotyQuoteBundle:Default:viewlist }
+
+quoty_quote_add:
+    path:    /add
+    defaults: { _controller: QuotyQuoteBundle:Default:add }
+
+quoty_quote_add:
+    path:    /add
+    defaults: { _controller: QuotyQuoteBundle:Default:add }

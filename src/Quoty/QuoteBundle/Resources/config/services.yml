@@ -1,0 +1,7 @@
+parameters:
+#    quoty_quote.example.class: Quoty\QuoteBundle\Example
+
+services:
+#    quoty_quote.example:
+#        class: %quoty_quote.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

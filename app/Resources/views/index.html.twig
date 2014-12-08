@@ -1,0 +1,75 @@
+{# quoty/app/Resources/views/index.html.twig #}
+
+<!DOCTYPE html>
+<html lang="">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="A website about Quote">
+		<meta name="author" content="Elfhir - Jérémy Ta">
+		<title>Quoty - The good quotes</title>
+		<link rel="icon" href="../favicon.ico">
+		<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+		<div class="wrapper">
+			
+			<div class="fluid-container q-header-container">
+				<div class="navbar primary navbar-default">
+					<ul class="nav navbar-nav">
+						<a class="navbar-brand" href="#">Quoty</a>
+						<li class="active">
+							<a href="#">Home</a>
+						</li>
+						<li>
+							<a href="#">About</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+
+			<div class="fluid-container q-main-container clearfix">
+
+			{% block main_container %}
+
+				<div class="jumbotron">
+					<div class="container">
+						<h1>Great quotes</h1>
+						<p>Movies, novels, leaders, scientifics, sportsman ...</p>
+						<p>
+							<a href="/quotes" class="btn btn-primary btn-lg">Learn more</a>
+						</p>
+					</div>
+				</div>
+
+			{% endblock %}
+
+			</div>
+
+			<div class="fluid-container clearfix q-footer-container text-center">
+				<div class="row">
+					<footer class="footer text-center center-block">
+						<p><span class="glyphicon glyphicon-copyright-mark"></span> 2014 Jérémy Ta Some Rights Reserved</p>
+					</footer>
+				</div>
+			</div>
+
+		</div><!-- End wrapper -->
+
+		<!-- jQuery -->
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<!-- Bootstrap JavaScript -->
+		<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	</body>
+</html>

@@ -1,0 +1,4 @@
+quoty_quote:
+    resource: "@QuotyQuoteBundle/Resources/config/routing.yml"
+    prefix:   /quotes
+
