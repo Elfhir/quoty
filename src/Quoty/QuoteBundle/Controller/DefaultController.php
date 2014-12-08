@@ -2,7 +2,9 @@
 
 namespace Quoty\QuoteBundle\Controller;
 
+use Quoty\QuoteBundle\Entity\Quote;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 class DefaultController extends Controller
 {
@@ -13,7 +15,11 @@ class DefaultController extends Controller
 	 */
 	public function viewlistAction()
 	{
-		return $this->render('QuotyQuoteBundle:Default:viewlist.html.twig');
+		$em = $this->getDoctrine()->getManager();
+		$quotes = $em->getRepository('QuotyQuoteBundle:Quote')->findAll();
+		return $this->render('QuotyQuoteBundle:Default:viewlist.html.twig', array(
+			'quotes' => $quotes
+		));
 	}
 
 

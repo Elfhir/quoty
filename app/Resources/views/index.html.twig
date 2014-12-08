@@ -24,15 +24,20 @@
 	<body>
 		<div class="wrapper">
 			
-			<div class="fluid-container q-header-container">
+			<div class="fluid-container q-header-container text-center">
 				<div class="navbar primary navbar-default">
 					<ul class="nav navbar-nav">
-						<a class="navbar-brand" href="#">Quoty</a>
+						<li>
+							<a href="#">Quoty</a>
+						</li>
 						<li class="active">
-							<a href="{{ path('quoty_quote_viewlist')}}">Home</a>
+							<a href="{{ path('quoty_quote_viewlist')}}"><span class="glyphicon glyphicon-home"></span> Accueil</a>
 						</li>
 						<li>
-							<a href="/about">About</a>
+							<a href="/about"><span class="glyphicon glyphicon-info-sign"></span> A propos</a>
+						</li>
+						<li>
+							<a href="/add" title="Add"><span class="glyphicon glyphicon-edit"></span> Ajouter une quote</a>
 						</li>
 					</ul>
 				</div>
