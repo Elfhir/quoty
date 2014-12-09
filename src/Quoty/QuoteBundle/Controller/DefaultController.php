@@ -56,11 +56,46 @@ class DefaultController extends Controller
 	{
 		$quote = new Quote;
 		$form = $this->get('form.factory')->create(new QuoteType, $quote);
+		$em = $this->getDoctrine()->getManager();
+
+		$form->handleRequest($this->getRequest());
+
+		if ($form->isValid()) {
+			$quote = $form->getData();
+
+			$db_quotes = $em->getRepository('QuotyQuoteBundle:Quote')->findAll();
+
+			$em->persist($quote);
+			$em->flush();
+			
+			return $this->redirect($this->generateUrl('quoty_quote_view', array('id' => $quote->getId())));
+		}
 
 		return $this->render('QuotyQuoteBundle:Default:add.html.twig', array(
 			'form' => $form->createView()
 		));
 	}
+
+	// public function createAction()
+	// {
+	// 	$em = $this->getDoctrine()->getEntityManager();
+
+	// 	$form = $this->createForm(new RegistrationType(), new Registration());
+
+	// 	$form->handleRequest($this->getRequest());
+
+	// 	if ($form->isValid()) {
+	// 		$registration = $form->getData();
+
+	// 		$em->persist($registration->getUser());
+	// 		$em->flush();
+
+	// 		return $this->redirect(...);
+	// 	}
+
+	// 	return $this->redirect($this->generateUrl('quoty_quote_viewlist'));
+		
+	// }
 	
 	/**
 	 * Go to a form for editing a Quote.

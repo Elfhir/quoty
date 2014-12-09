@@ -5,6 +5,7 @@ namespace Quoty\QuoteBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\EntityRepository;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Quote
@@ -37,6 +38,7 @@ class Quote
 	 * @var \DateTime
 	 *
 	 * @ORM\Column(name="lastUpdate", type="datetime")
+	 * @ASSERT\DateTime()
 	 */
 	private $lastUpdate;
 
@@ -44,13 +46,15 @@ class Quote
 	 * @var string
 	 *
 	 * @ORM\Column(name="content", type="text")
+	 * @ASSERT\NotBlank()
 	 */
 	private $content;
 
 	/**
 	 * @var string
 	 *
-	 * @ORM\Column(name="author", type="string", length=255, unique=true)
+	 * @ORM\Column(name="author", type="string", length=255)
+	 * @ASSERT\Length(min=2)
 	 */
 	private $author;
 
@@ -58,6 +62,13 @@ class Quote
 	* @ORM\ManyToMany(targetEntity="Quoty\QuoteBundle\Entity\Category", cascade={"persist"})
 	*/
 	private $categories;
+
+	public function setCategories(Category $category)
+	{
+		$this->categories[] = $category;
+
+		return $this;
+	}
 
 
 	public function addCategory(Category $category)

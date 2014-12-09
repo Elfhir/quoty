@@ -1,7 +1,3 @@
 parameters:
 #    quoty_quote.example.class: Quoty\QuoteBundle\Example
 
-services:
-    category.integrity:
-        class: Quoty\QuoteBundle\Services\CategoryIntegrity
-
