@@ -1,4 +1,23 @@
+quoty_user:
+    resource: "@QuotyUserBundle/Resources/config/routing.yml"
+    prefix:   /
+
 quoty_quote:
     resource: "@QuotyQuoteBundle/Resources/config/routing.yml"
-    prefix:   /quotes
+    prefix:   /
 
+login:
+    pattern:   /login
+    defaults:  { _controller: QuotyUserBundle:Security:login }
+
+login_check:
+    pattern:   /login_check
+
+logout:
+    pattern:   /logout
+
+about:
+    pattern:   /about
+    defaults:
+        _controller: FrameworkBundle:Template:template
+        template: '::about.html.twig'

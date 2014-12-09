@@ -7,6 +7,7 @@ use Quoty\QuoteBundle\Form\QuoteType;
 use Quoty\QuoteBundle\Form\QuoteEditType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class DefaultController extends Controller
 {
@@ -31,14 +32,20 @@ class DefaultController extends Controller
 	 */
 	public function viewAction(Request $request)
 	{
-		
+		$env = $this->get('kernel')->getEnvironment();
 		$em = $this->getDoctrine()->getManager();
 		$id = $request->get('id');
 		$quote = new Quote;
 		$quote = $em->getRepository('QuotyQuoteBundle:Quote')->find($id);
 
+		// If in dev, exception, else simple redirect
 		if (null === $quote) {
-			throw new NotFoundHttpException("La Quote d'id ".$id." n'existe pas.");
+			if ($env === 'prod') {
+				return $this->render('QuotyQuoteBundle:Default:tmpError.html.twig');
+			}
+			elseif (in_array($env, array('dev', 'text'))) {
+				throw $this->createNotFoundException('La quote n\'existe pas.');
+			}
 		}
 
 		return $this->render('QuotyQuoteBundle:Default:view.html.twig', array(
@@ -49,7 +56,7 @@ class DefaultController extends Controller
 
 	/**
 	 * Go to a form for adding a Quote.
-	 * 
+	 *
 	 * @return Response
 	 */
 	public function addAction(Request $request)
@@ -76,35 +83,14 @@ class DefaultController extends Controller
 		));
 	}
 
-	// public function createAction()
-	// {
-	// 	$em = $this->getDoctrine()->getEntityManager();
-
-	// 	$form = $this->createForm(new RegistrationType(), new Registration());
-
-	// 	$form->handleRequest($this->getRequest());
-
-	// 	if ($form->isValid()) {
-	// 		$registration = $form->getData();
-
-	// 		$em->persist($registration->getUser());
-	// 		$em->flush();
-
-	// 		return $this->redirect(...);
-	// 	}
-
-	// 	return $this->redirect($this->generateUrl('quoty_quote_viewlist'));
-		
-	// }
-	
 	/**
 	 * Go to a form for editing a Quote.
-	 * 
+	 *
 	 * @return Response
 	 */
 	public function editAction(Request $request)
 	{
-		
+		$env = $this->get('kernel')->getEnvironment();
 		$em = $this->getDoctrine()->getManager();
 		$id = $request->get('id');
 		$quote = new Quote;
@@ -112,8 +98,15 @@ class DefaultController extends Controller
 
 		$form = $this->get('form.factory')->create(new QuoteEditType, $quote);
 
+		// If in dev, exception, else simple redirect
 		if (null === $quote) {
-			throw new NotFoundHttpException("La Quote d'id ".$id." n'existe pas.");
+			if ($env === 'prod') {
+				//return $this->redirect($this->generateUrl('quoty_quote_viewlist'));
+				return $this->render('QuotyQuoteBundle:Default:tmpError.html.twig');
+			}
+			elseif (in_array($env, array('dev', 'text'))) {
+				throw $this->createNotFoundException('La quote n\'existe pas.');
+			}
 		}
 
 		return $this->render('QuotyQuoteBundle:Default:edit.html.twig', array(
@@ -123,7 +116,7 @@ class DefaultController extends Controller
 
 	/**
 	 * Go to a form for deleting a Quote.
-	 * 
+	 *
 	 * @return Response
 	 */
 	public function deleteAction(Request $request)
@@ -132,8 +125,14 @@ class DefaultController extends Controller
 		$id = $request->get('id');
 		$quote = $em->getRepository('QuotyQuoteBundle:Quote')->find($id);
 
+		// If in dev, exception, else simple redirect
 		if (null === $quote) {
-			throw new NotFoundHttpException("La Quote d'id ".$id." n'existe pas.");
+			if ($env === 'prod') {
+				return $this->redirect($this->generateUrl('quoty_quote_viewlist'));
+			}
+			elseif (in_array($env, array('dev', 'text'))) {
+				throw $this->createNotFoundException('La quote n\'existe pas.');
+			}
 		}
 
 		$form = $this->createFormBuilder()->getForm();
@@ -152,4 +151,15 @@ class DefaultController extends Controller
 			'form'  => $form->createView()
 		));
 	}
+
+	/**
+	 * Display a tmpError page, with a meta refresh
+	 * 
+	 * @return Response
+	 */
+	public function tmpErrorAction(Request $request)
+	{
+		return $this->redirect($this->generateUrl('quoty_quote_tmp_error'));
+	}
+
 }

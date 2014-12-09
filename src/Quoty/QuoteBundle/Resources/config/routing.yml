@@ -1,4 +1,12 @@
+quoty_quote_home:
+    path:     /
+    defaults: { _controller: QuotyQuoteBundle:Default:viewlist }
+
 quoty_quote_viewlist:
+    path:     /
+    defaults: { _controller: QuotyQuoteBundle:Default:viewlist }
+
+quoty_quote_viewlist_slash:
     path:     /
     defaults: { _controller: QuotyQuoteBundle:Default:viewlist }
 
@@ -23,3 +31,7 @@ quoty_quote_delete:
     defaults: { _controller: QuotyQuoteBundle:Default:delete, id:1 }
     requirements:
         id: \d*
+
+quoty_quote_tmp_error:
+    path:   /tmp_error
+    defaults: { _controller: QuotyQuoteBundle:Default:tmpError }

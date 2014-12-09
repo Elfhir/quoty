@@ -8,7 +8,6 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="description" content="A website about Quote">
 		<meta name="author" content="Elfhir - Jérémy Ta">
-		{% block meta_refresh %}{% endblock %}
 		<title>Quoty - The good quotes</title>
 		<link rel="icon" href="../favicon.ico">
 		<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
@@ -42,6 +41,14 @@
 							<li>
 								<a href="{{ path('quoty_quote_add')}}" title="Add"><span class="glyphicon glyphicon-plus"></span> Ajouter une quote</a>
 							</li>
+								{% if is_granted('ROLE_ADMIN') %}
+								<li>
+									<a href="{{ path('quoty_quote_edit')}}" title="Add"><span class="glyphicon glyphicon-edit"></span> Editer une quote</a>
+								</li>
+								<li>
+									<a href="{{ path('quoty_quote_delete')}}" title="Add"><span class="glyphicon glyphicon-remove-sign"></span> Supprimer une quote</a>
+								</li>
+								{% endif %}
 						{% endif %}
 					</ul>
 					<ul class="nav navbar-nav pull-right">
@@ -62,20 +69,33 @@
 			</div>
 			{% endblock %}
 
-			
 			<div class="fluid-container q-main-container clearfix">
 
 			{% block main_container %}
 
-				<div class="jumbotron">
-					<div class="container">
-						<h1>Great quotes</h1>
-						<p>Movies, novels, leaders, scientifics, sportsman ...</p>
-						<p>
-							<a href="{{ path('quoty_quote')}}" class="btn btn-primary btn-lg">Learn more</a>
-						</p>
+
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-10 col-md-10 col-md-6 col-lg-6">
+						<div class="error-template">
+							<h1>Oops! I, did it again !</h1>
+							<h2>403 Access not allowed</h2>
+							<div class="error-details">
+								<p>
+									Je n'ai pas trouvé la page, en revanche j'ai cette vidéo youtube,
+									qui pourrait t'intéresser :
+									<a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" title="Non, c'est une vidéo trop marrante, vas-y clique !">Comment gagner de l'argent rapidement</a>.
+								</p>
+							</div>
+							<div class="error-actions">
+								<a href="http://quoty.jeremy-ta.fr" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-home"></span>
+									Retour à l'accueil </a><a href="mailto:contact@jeremy-ta.fr?subject=Feedback Quoty" title="email me" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-envelope"></span> Me contacter </a>
+
+							</div>
+						</div>
 					</div>
 				</div>
+			</div>
 
 			{% endblock %}
 

@@ -1,6 +1,9 @@
 imports:
     - { resource: config.yml }
 
+# twig:
+#     exception_controller:
+
 #framework:
 #    validation:
 #        cache: apc

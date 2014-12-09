@@ -1,3 +1,9 @@
 parameters:
 #    quoty_quote.example.class: Quoty\QuoteBundle\Example
 
+services:
+    kernel.listener.quoty_exception_listener:
+        class: Quoty\QuoteBundle\Listener\ExceptionListener
+        arguments: [@templating, @kernel]
+        tags:
+            - { name: kernel.event_listener, event: kernel.exception, method: onKernelException }

@@ -1,0 +1,174 @@
+{# quoty/app/Resources/views/index.html.twig #}
+
+<!DOCTYPE html>
+<html lang="">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="A website about Quote">
+		<meta name="author" content="Elfhir - Jérémy Ta">
+		<title>Quoty - The good quotes</title>
+		<link rel="icon" href="../favicon.ico">
+		<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+		<div class="wrapper">
+			
+			{% block main_menu %}
+			<div class="fluid-container q-header-container text-center">
+				<div class="navbar primary navbar-default">
+					<ul class="nav navbar-nav">
+						<li>
+							<a href="#">Quoty</a>
+						</li>
+						<li class="active">
+							<a href="{{ path('quoty_quote_viewlist')}}"><span class="glyphicon glyphicon-home"></span> Accueil</a>
+						</li>
+						<li>
+							<a href="/about"><span class="glyphicon glyphicon-info-sign"></span> A propos</a>
+						</li>
+						{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+							<li>
+								<a href="{{ path('quoty_quote_add')}}" title="Add"><span class="glyphicon glyphicon-plus"></span> Ajouter une quote</a>
+							</li>
+								{% if is_granted('ROLE_ADMIN') %}
+								<li>
+									<a href="{{ path('quoty_quote_edit')}}" title="Add"><span class="glyphicon glyphicon-edit"></span> Editer une quote</a>
+								</li>
+								<li>
+									<a href="{{ path('quoty_quote_delete')}}" title="Add"><span class="glyphicon glyphicon-remove-sign"></span> Supprimer une quote</a>
+								</li>
+								{% endif %}
+						{% endif %}
+					</ul>
+					<ul class="nav navbar-nav pull-right">
+						<li>
+							<a href="{{ path('login') }}" title="Login"><span class="glyphicon glyphicon-log-in"></span>
+								Connexion
+							</a>
+						</li>
+						{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+						<li>
+							<a href="{{ path('logout') }}" title="Login"><span class="glyphicon glyphicon-log-out"></span>
+								Déconnexion
+							</a>
+						</li>
+						{% endif %}	
+					</ul>
+				</div>
+			</div>
+			{% endblock %}
+
+			<div class="fluid-container q-main-container clearfix">
+
+			{% block main_container %}
+
+				<div class="container">
+					<div class="row">
+				<div class="page-header">
+							<h1>A propos</h1>
+							<span>Dernière mise à jour : Mardi 9 décembre 2014.</span>
+						</div>
+						<div class="row">
+							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-7">
+								<h2>De ce site :</h2>
+								<p>
+									Ce site est un site démo, un projet amateur dans le but de prouver mes connaissances,
+									en <strong>Symfony 2</strong> (en version 2.3), mais aussi en <strong>Twitter Bootstrap 3</strong>.
+								</p>
+								<p>
+									J'ai démarré mon projet en suivant grâce <strong>Composer</strong>.
+									Il m'a permis d'ajouter aussi, ou de mettre à jour les composants comme
+									<em>Assetic</em>, <em>Doctrine</em>, <em>FOSUserBundle</em> ...
+								</p>
+								<p>
+									J'ai utilisé les commandes fournies par la console php de <strong>Symfony</strong>,
+									pour générer les <em>Bundles</em>, les <em>Controllers</em>,
+									les <em>Entities</em>, les <em>Form</em> ...
+									L'utilisation des <em>Fixtures</em>, des <em>Annotations</em> de validation, ou un peu de templating avec <em>Twig</em> ne me fait pas peur !
+								</p>
+								<p>
+									Pour synthétiser, je sais gérer les bases de la création de nouveaux composants, la gestion des utilisateurs (authentification et autorisation)
+								</p>
+								<p>
+									J'ai les bases pour démarrer ou rejoindre un projet utilisant Symfony2.
+									L'expertise viendra avec le temps !
+								</p>
+
+								<h3>Le dépôt Github</h3>
+								<p>
+									Si le code du site vous intéresse, allez voir mon <strong>Github</strong>.<br>
+									<br><br>
+									<a href="https://github.com/Elfhir/quoty" title="Github Quoty">https://github.com/Elfhir/quoty</a>
+								</p>
+							</div>
+
+							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-3 col-lg-offset-2 vert-offset-top-2">
+								<div class="list-group">
+									<a href="http://symfony.com/" title="Symfony, Sensio labs" class="list-group-item">Symfony</a>
+									<a href="http://getbootstrap.com/" title="Twitter Bootstrap" class="list-group-item">Twitter Bootstrap</a>
+									<a href="https://getcomposer.org/" title="Composer, php package manager" class="list-group-item">Composer</a>
+									<a href="http://openclassrooms.com/courses/developpez-votre-site-web-avec-le-framework-symfony2" title="OpenClassroom" class="list-group-item">Un excellent cours</a>
+								</div>
+							</div>
+
+							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-7">
+								<h2>Du créateur du site :</h2>
+								<h3>Jérémy Ta</h3>
+								<h4>Développeur Web</h4>
+								<a href="http://www.jeremy-ta.fr/cv/cv-JeremyTa.pdf" title="CV">Curriculum vitae</a>
+								<p>
+									Ingénieur IMAC promotion 2014, je suis un passionné de développement web et de design.
+									Je développe en me conformant au norme du W3C, je fais une veille sur les nouvelles technos
+									du web : Angular.js, Wordpress, Bootstrap, et Symfony.
+									J'ai été développeur web (en stage, 10 mois d'expériences) à l'Onisep.
+									Contactez moi si vous avez une offre de développement Front-End junior ;-) !
+								</p>
+							</div>
+
+							<div class="col-xs-12 col-sm-12 col-md-12 col-lg-3 col-lg-offset-2 vert-offset-top-2">
+								<h4>Mes autres projets</h4>
+								<div class="list-group">
+									<a href="http://morphologimac.jeremy-ta.fr/" class="list-group-item">Morphologimac (Wordpress)</a>
+									<a href="http://www.jeremy-ta.fr/work/onisep/onisep-mindmap-independant/" class="list-group-item">Carte heuristique D3.js</a>
+									<a href="http://jeremy-ta.fr/lab/grunt-bower/" class="list-group-item">Grunt et Bower</a>
+									<a href="http://pokedex.jeremy-ta.fr" class="list-group-item">Pokedex jQueryMobile</a>
+									<a href="http://marcopolo.jeremy-ta.fr" class="list-group-item">Marcopolo : Angular.js</a>
+									<a href="http://www.sdb-arts.fr" class="list-group-item">Site Wordpress/Koken pour une amie</a>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+			{% endblock %}
+
+			</div>
+
+			<div class="fluid-container clearfix q-footer-container text-center">
+				<div class="row">
+					<footer class="footer text-center center-block">
+						<p><span class="glyphicon glyphicon-copyright-mark"></span> 2014 Jérémy Ta Some Rights Reserved</p>
+					</footer>
+				</div>
+			</div>
+
+		</div><!-- End wrapper -->
+
+		<!-- jQuery -->
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+		<!-- Bootstrap JavaScript -->
+		<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	</body>
+</html>

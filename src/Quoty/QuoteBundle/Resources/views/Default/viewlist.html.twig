@@ -7,7 +7,14 @@
 		<div class="container">
 			{% for quote in quotes %}
 			<div class="q-quote-container col-xs-12 col-sm-12 col-md-4 col-lg-4">
-				
+				<div class="pull-right">
+					<a href="{{ path('quoty_quote_edit', {'id': quote.id })}}" title="Edit">
+						<span class="btn btn-info glyphicon glyphicon-edit"></span>
+					</a>
+					<a href="{{ path('quoty_quote_delete', {'id': quote.id })}}" title="Delete">
+						<span class="btn btn-warning glyphicon glyphicon-remove"></span>
+					</a>
+				</div>
 				<blockquote class="well">
 					<p>« {{ quote.content}} »
 					</p>

@@ -1,0 +1,23 @@
+{# quoty/src/Quoty/QuoteBundle/Resources/views/Default/tmpError.html.twig #}
+
+{% extends "::index.html.twig" %}
+
+{% block meta_refresh %}
+<meta http-equiv="refresh" content="1.5; url={{ url('quoty_quote_home') }}">
+{% endblock %}
+
+{% block main_container %}
+	<div class="row">
+		<div class="container">
+			<div class="q-quote-container col-xs-12 col-sm-12 col-md-4 col-lg-4 col-md-offset-4 col-lg-offset-4">	
+				<div class="well">
+					
+					<h2> Redirection </h2>
+					<h3> Citation inexistante </h3>
+					<h4> Page indisponible </h4>
+
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
