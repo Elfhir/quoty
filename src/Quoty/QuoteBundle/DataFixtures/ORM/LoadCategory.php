@@ -12,29 +12,26 @@ class LoadCategory implements FixtureInterface
 	// EntityManager is loaded
 	public function load(ObjectManager $manager)
 	{
-		// // List of Categories
-		// $names = array(
-		// 	'Philosophie',
-		// 	'Politique',
-		// 	'Militaire',
-		// 	'Sportif',
-		// 	'Artistique',
-		// 	'Cinéma',
-		// 	'Essayiste',
-		// 	'Musique',
-		// 	'Inconnu'
-		// );
+		// List of Categories
+		$names = array(
+			'Militaire',
+			'Sportif',
+			'Artistique',
+			'Cinéma',
+			'Essayiste',
+			'Inconnu'
+		);
 
-		// foreach ($names as $name) {
+		foreach ($names as $name) {
 
-		// 	$category = new Category();
-		// 	$category->setName($name);
+			$category = new Category();
+			$category->setName($name);
 
-		// 	// convert object to dql
-		// 	$manager->persist($category);
-		// }
+			// convert object to dql
+			$manager->persist($category);
+		}
 
-		// // Register the categories (execute dql/sql)
-		// $manager->flush();
+		// Register the categories (execute dql/sql)
+		$manager->flush();
 	}
 }

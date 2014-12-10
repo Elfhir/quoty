@@ -41,14 +41,6 @@
 							<li>
 								<a href="{{ path('quoty_quote_add')}}" title="Add"><span class="glyphicon glyphicon-plus"></span> Ajouter une quote</a>
 							</li>
-								{% if is_granted('ROLE_ADMIN') %}
-								<li>
-									<a href="{{ path('quoty_quote_edit')}}" title="Add"><span class="glyphicon glyphicon-edit"></span> Editer une quote</a>
-								</li>
-								<li>
-									<a href="{{ path('quoty_quote_delete')}}" title="Add"><span class="glyphicon glyphicon-remove-sign"></span> Supprimer une quote</a>
-								</li>
-								{% endif %}
 						{% endif %}
 					</ul>
 					<ul class="nav navbar-nav pull-right">
