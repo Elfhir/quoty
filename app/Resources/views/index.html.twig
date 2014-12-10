@@ -10,10 +10,18 @@
 		<meta name="author" content="Elfhir - Jérémy Ta">
 		{% block meta_refresh %}{% endblock %}
 		<title>Quoty - The good quotes</title>
-		<link rel="icon" href="../favicon.ico">
+		<link rel="icon" href="{{ asset('bundles/quotyquote/favicon.ico') }}">
 		<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
 		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
+{# 		<link rel="stylesheet" href="{{ asset('bundles/quotyquote/css/theme.css') }}" type="text/css" />
+		<link rel="stylesheet" href="{{ asset('bundles/quotyquote/css/layout.css') }}" type="text/css" /> #}
+
+		{% stylesheets
+			'@QuotyQuoteBundle/Resources/public/css/*' filter='cssrewrite'
+		%}	
+			<link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
+		{% endstylesheets %}
 
 		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -29,8 +37,8 @@
 			<div class="fluid-container q-header-container text-center">
 				<div class="navbar primary navbar-default">
 					<ul class="nav navbar-nav">
-						<li>
-							<a href="#">Quoty</a>
+						<li class="q-brand">
+							<a href="/"><h1>Quoty</h1></a>
 						</li>
 						<li class="active">
 							<a href="{{ path('quoty_quote_viewlist')}}"><span class="glyphicon glyphicon-home"></span> Accueil</a>
@@ -60,6 +68,14 @@
 					</ul>
 				</div>
 			</div>
+
+
+			<div class="fluid-container q-slogan-container">
+				<div class="text-center">
+					<em>Inscrivez vous, et ajoutez votre citation préférée !</em>
+				</div>
+			</div>
+
 			{% endblock %}
 
 			
@@ -81,7 +97,7 @@
 
 			</div>
 
-			<div class="fluid-container clearfix q-footer-container text-center">
+			<div class="fluid-container clearfix q-footer-container text-center center-block">
 				<div class="row">
 					<footer class="footer text-center center-block">
 						<p><span class="glyphicon glyphicon-copyright-mark"></span> 2014 Jérémy Ta Some Rights Reserved</p>
@@ -95,5 +111,8 @@
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 		<!-- Bootstrap JavaScript -->
 		<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+		<!-- Masonry -->
+		<script src="//cdnjs.cloudflare.com/ajax/libs/masonry/3.2.1/masonry.pkgd.min.js"></script>
 	</body>
 </html>

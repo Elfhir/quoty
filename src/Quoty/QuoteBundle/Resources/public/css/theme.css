@@ -1,0 +1,24 @@
+body {
+	background: #eeeeee;
+	background-image: url('../images/patterns/tiny_grid_@2X.png');
+}
+
+.q-quote-container .well{
+	-webkit-box-shadow: 0 0 10px 5px rgba(15,190,100,0.4);
+			box-shadow: 0 0 10px 5px rgba(15,190,100,0.4);
+}
+
+.q-slogan-container {
+	background: #e7e7e7;
+	border-bottom: rgb(15,190,100) 2px dashed;
+
+	-webkit-box-shadow:inset 0 4px 1px 0 rgba(0,0,0,0.4);
+			box-shadow:inset 0 4px 1px 0 rgba(0,0,0,0.4);
+}
+
+.q-brand h1 {
+	font: 'Gentium', 'Georgia', serif;
+	font-size: 1em;
+	margin: 0;
+}
+

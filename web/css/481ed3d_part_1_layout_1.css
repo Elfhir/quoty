@@ -1,0 +1,18 @@
+
+.wrapper {
+	overflow-x: hidden;
+}
+
+.q-slogan-container {
+	position: relative;
+	margin-top: -20px;
+}
+
+.q-main-container {
+	margin-top: 25px;
+}
+
+.q-footer-container {
+	position: relative;
+	margin-top: 150px;
+}
