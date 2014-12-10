@@ -4,15 +4,15 @@
 namespace Quoty\PlatformBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\FixtureInterface;
-use Doctrine\Common\DataFixtures\AbstractFixture;
-use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
+
 use Doctrine\Common\Persistence\ObjectManager;
-use Symfony\Component\DependencyInjection\ContainerAwareInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+
+use Symfony\Component\DependencyInjection\ContainerAware;
+use FOS\UserBundle\Model\UserManager;
 use Quoty\UserBundle\Entity\User;
 
 
-class LoadUser implements FixtureInterface
+class LoadUser extends ContainerAware implements FixtureInterface
 {
 	// EntityManager is loaded
 	public function load(ObjectManager $manager)
@@ -21,29 +21,39 @@ class LoadUser implements FixtureInterface
 		$listUsers = array(
 			array(
 				'name' => 'Elsa',
-				'password' => 'letitgo'
+				'plainPassword' => 'letitgo',
+				'email'=> 'elsa@arendelle.dk',
+				'enable' => true
 			),
 			array(
 				'name' => 'Anna',
-				'password' => 'snowman'
+				'plainPassword' => 'snowman',
+				'email'  => 'anna@arendelle.dk',
+				'enable' => true
 			)
 		);
 
+		$userManager = $this->container->get('fos_user.user_manager');
+
+		
 		foreach ($listUsers as $list) {
 
 			$user = new User();
 
-			
+			$user->setPlainPassword($list['plainPassword']);
 
-			$user->setPassword($list['password']);
 			$user->setUsername($list['name']);
+			$user->setEmail($list['email']);
+			$user->setEnabled($list['enable']);
 
 			$user->setRoles(array('ROLE_USER'));
 			// convert object to dql
-			$manager->persist($user);
+			$userManager->updateUser($user, false);
 		}
 
 		// Register the categories (execute dql/sql)
 		$manager->flush();
 	}
+
+
 }

@@ -68,15 +68,6 @@ class User extends BaseUser
 	protected $enabled;
 
 	/**
-	 * The salt to use for hashing
-	 *
-	 * @var string
-	 *
-	 * @ORM\Column(name="salt", type="text", nullable=false)
-	 */
-	protected $salt ="aetuosfhkmwcb";
-
-	/**
 	 * Encrypted password. Must be persisted.
 	 *
 	 * @var string

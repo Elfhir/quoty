@@ -11,12 +11,18 @@ security:
         in_memory:
             memory:
                 users:
-                    user:  { password: 45f106ef4d5161e7aa38cf6c666607f25748b6ca, roles: [ 'ROLE_USER' ] }
-                    admin: { password: 1d5d9acb16b97d28fc8d9acdb3041caad10c921c, roles: [ 'ROLE_ADMIN' ] }
+                    user:  { password: $2a$08$fQWnlzsxCcK6yPmzJPTuC.V/kW2OQ2QtKA9kYyT5olRUswLKYdfge, roles: [ 'ROLE_USER' ] }
+                    admin: { password: $2a$08$XKuVvGCGiSHmVgh7cSypw.3dccTsJt3ZWwSl8Tk5hmQYJty7WxlZG, roles: [ 'ROLE_ADMIN' ] }
+        fos_userbundle:
+            id: fos_user.user_manager
 
     encoders:
         Symfony\Component\Security\Core\User\User:
-            algorithm:   sha1
+            algorithm:   bcrypt
+            iterations: 1
+            encode_as_base64: false
+        FOS\UserBundle\Model\UserInterface:
+            algorithm:   bcrypt
             iterations: 1
             encode_as_base64: false
 
