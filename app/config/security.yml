@@ -11,16 +11,14 @@ security:
         in_memory:
             memory:
                 users:
-                    user:  { password: $2a$08$fQWnlzsxCcK6yPmzJPTuC.V/kW2OQ2QtKA9kYyT5olRUswLKYdfge, roles: [ 'ROLE_USER' ] }
-                    admin: { password: $2a$08$XKuVvGCGiSHmVgh7cSypw.3dccTsJt3ZWwSl8Tk5hmQYJty7WxlZG, roles: [ 'ROLE_ADMIN' ] }
+                    user:  { password: userpass, roles: [ 'ROLE_USER' ] }
+                    admin: { password: adminpass, roles: [ 'ROLE_ADMIN' ] }
         fos_userbundle:
             id: fos_user.user_manager
 
     encoders:
-        Symfony\Component\Security\Core\User\User:
-            algorithm:   bcrypt
-            iterations: 1
-            encode_as_base64: false
+        Symfony\Component\Security\Core\User\User: plaintext
+
         FOS\UserBundle\Model\UserInterface:
             algorithm:   bcrypt
             iterations: 1
@@ -33,7 +31,9 @@ security:
         main:
             pattern:  ^/
             anonymous: true
-            provider:  in_memory
+            #in_memory for dev with adminpass
+            #provider:  in_memory
+            provider:  fos_userbundle
             form_login:
                 login_path: login
                 check_path: login_check
