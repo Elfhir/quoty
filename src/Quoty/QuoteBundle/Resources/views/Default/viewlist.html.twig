@@ -20,7 +20,7 @@
 				{% endif %}
 				{% endif %}
 				<blockquote class="well">
-					<p>« {{ quote.content}} »
+					<p><a href="{{ path('quoty_quote_view', {'id': quote.id})}}" title="">« {{ quote.content}} »</a>
 					</p>
 					<footer>
 						<cite>{{ quote.author }}</cite>

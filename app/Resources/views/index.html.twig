@@ -44,7 +44,7 @@
 							<a href="{{ path('quoty_quote_viewlist')}}"><span class="glyphicon glyphicon-home"></span> Accueil</a>
 						</li>
 						<li>
-							<a href="/about"><span class="glyphicon glyphicon-info-sign"></span> A propos</a>
+							<a href="{{ path('about')}}"><span class="glyphicon glyphicon-info-sign"></span> A propos</a>
 						</li>
 						{% if is_granted('IS_AUTHENTICATED_FULLY') %}
 							<li>
