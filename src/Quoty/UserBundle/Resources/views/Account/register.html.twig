@@ -9,32 +9,120 @@
 
 	<div class="row">
 		<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-md-offset-4 col-lg-offset-4">
-			<h2><span class="glyphicon glyphicon-log-in btn-lg"></span> Connexion </h2>
+			<h2><span class="glyphicon glyphicon-log-in btn-lg"></span> Inscription </h2>
 			<div class="well">
-
 
 				<form action="{{ path('register_create_user')}}" method="post" {{ form_enctype(form) }} class="form-horizontal">
 
-{# 				<div class="form-group">
-					{{ form_label(form.user.username, "Auteur", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
-
-					{{ form_errors(form.user.username) }}
-
-					<div class="col-sm-4">
-						{{ form_widget(form.user.username, {'attr': {'class': 'form-control', 'required': 'required'}}) }}
+					<div class="form-group">
+						<div class="col-sm-5">
+							{{ form_label(form.user.username, "Nom d'utilisateur", {'label_attr': {'class': ' control-label'}}) }}
+						</div>
+						<div class="col-sm-7">
+							{{ form_widget(form.user.username, {'attr': {'class': 'col-sm-3 form-control', 'required': 'required', 'data-validation':'length','data-validation-length':'min2'}}) }}
+						</div>
 					</div>
-				</div>
- #}
+					<div class="form-group">
+						<div class="col-sm-5">
+							{{ form_label(form.user.email, "Email", {'label_attr': {'class': ' control-label'}}) }}
+						</div>
+						<div class="col-sm-7">
+							{{ form_widget(form.user.email, {'attr': {'class': 'col-sm-3 form-control', 'required': 'required', 'data-validation':'email'}}) }}
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-5">
+							{{ form_label(form.user.plainPassword.first, "Mot de passe", {'label_attr': {'class': ' control-label'}}) }}
+						</div>
+						<div class="col-sm-7">
+							{{ form_widget(form.user.plainPassword.first, {'attr': {'class': 'col-sm-3 form-control pass-confirmation', 'required': 'required', 'type':'password', 'trim': 'true', 'data-validation':'length','data-validation-length':'min6'}}) }}
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-5">
+							{{ form_label(form.user.plainPassword.repeated, "(Confirmez)", {'label_attr': {'class': ' control-label'}}) }}
+						</div>
+						<div class="col-sm-7">
+							{{ form_widget(form.user.plainPassword.repeated, {'attr': {'class': 'col-sm-3 form-control pass', 'required': 'required', 'type':'password', 'trim': 'true'}}) }}
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-9">
 
+							{{ form_label(form.terms, "J'accepte les conditions d'utilisation :", {'label_attr': {'class': ' control-label'}}) }}
+							<a href="{{ path('about')}}" title="Terms of use">
+								Conditions
+							</a>
+						</div>
+						<div class="col-sm-3">
+							
+							{{ form_widget(form.terms, {'attr': {'class': 'col-sm-3 form-control', 'required': 'required'}}) }}
 
+						</div>
+					</div>
+					{{ form_widget(form._token) }}
+					{{ form_errors(form) }}
 
-				<input type="submit" class="btn btn-primary pull-right col-sm-3" />
-	
-				{{ form_end(form) }}
+					<div class="form-group">
+						<input type="submit" class="btn btn-primary pull-right col-sm-3" />
+					</div>
+				</form>
 
 
 			</div>
 		</div>
 	</div>
 
+{% endblock %}
+
+
+{% block jquery_form_validator %}
+	<!-- Load jquery form validator plugin : for instance when wrong email given, it will tell the user (but he can send it
+	 quand même) 
+	Documentation : http://formvalidator.net/
+	auteur : Victor Jonsson
+	 -->
+	{# <script src="{{ asset('js/jquery.formvalidator.min.js') }}"></script> #}
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.1.47/jquery.form-validator.min.js"></script>
+	<script>
+
+		// Change here the default message of jquery form validator plugin (enflish to grançais par exemle)
+		var myLanguage = {
+			errorTitle : 'Formulaire non envoyé !',
+			requiredFields : 'Remplissez les champs obligatoires',
+			badTime : 'You have not given a correct time',
+			badEmail : 'Email non valide !',
+			badTelephone : 'You have not given a correct phone number',
+			badSecurityAnswer : 'You have not given a correct answer to the security question',
+			badDate : 'You have not given a correct date',
+			lengthBadStart : 'You must give an answer between ',
+			lengthBadEnd : ' characters',
+			lengthTooLongStart : 'You have given an answer longer than ',
+			lengthTooShortStart : 'Trop court ! Nombre de caractère requis : ',
+			notConfirmed : 'Les valeurs ne correspondent pas',
+			badDomain : 'Incorrect domain value',
+			badUrl : 'The answer you gave was not a correct URL',
+			badCustomVal : 'You gave an incorrect answer',
+			badInt : 'The answer you gave was not a correct number',
+			badSecurityNumber : 'Your social security number was incorrect',
+			badUKVatAnswer : 'Incorrect UK VAT Number',
+			badStrength : 'Mot de passe trop faible',
+			badNumberOfSelectedOptionsStart : 'You have to choose at least ',
+			badNumberOfSelectedOptionsEnd : ' answers',
+			badAlphaNumeric : 'The answer you gave must contain only alphanumeric characters ',
+			badAlphaNumericExtra: ' and ',
+			wrongFileSize : 'The file you are trying to upload is too large',
+			wrongFileType : 'The file you are trying to upload is of wrong type',
+			groupCheckedRangeStart : 'Please choose between ',
+			groupCheckedTooFewStart : 'Please choose at least ',
+			groupCheckedTooManyStart : 'Please choose a maximum of ',
+			groupCheckedEnd : ' item(s)'
+		};
+
+		$.validate({
+			language : myLanguage,
+			modules: 'security'
+		});
+
+	</script>
 {% endblock %}

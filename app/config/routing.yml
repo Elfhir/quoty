@@ -22,10 +22,18 @@ about:
         _controller: FrameworkBundle:Template:template
         template: '::about.html.twig'
 
+
+# tos:
+#     pattern:   /tos
+#     defaults:
+#         _controller: FrameworkBundle:Template:template
+#         template: '::tos.html.twig'
+
 register_user:
-    pattern:   /register
-    defaults: { _controller: QuotyUserBundle:Account:register }
+    pattern:   /register/{token}
+    defaults: { _controller: QuotyUserBundle:Account:register, token: %secret% }
 
 register_create_user:
-    pattern:   /register
-    defaults: { _controller: QuotyUserBundle:Account:register }
+    pattern:   /create-user/{token}
+    defaults: { _controller: QuotyUserBundle:Account:create, token: %secret% }
+

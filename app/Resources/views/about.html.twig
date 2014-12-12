@@ -55,6 +55,12 @@
 								Déconnexion
 							</a>
 						</li>
+						{% else %}
+						<li>
+							<a href="{{ path('register_user') }}" title="Login"><span class="glyphicon glyphicon-user"></span>
+								Inscription
+							</a>
+						</li>
 						{% endif %}	
 					</ul>
 				</div>
