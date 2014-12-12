@@ -66,14 +66,34 @@ class DefaultController extends Controller
 		$em = $this->getDoctrine()->getManager();
 
 		$form->handleRequest($this->getRequest());
+		$userManager = $this->container->get('fos_user.user_manager');
 
 		if ($form->isValid()) {
 			$quote = $form->getData();
 
+			// Get all the quotes
 			$db_quotes = $em->getRepository('QuotyQuoteBundle:Quote')->findAll();
 
+			// update in database
 			$em->persist($quote);
 			$em->flush();
+
+			// get current logged user
+			$user = $this->get('security.context')->getToken()->getUser();
+
+			// while is number is >0, we can decreased it
+			if ($user->getQuoteNumber() > 0) {
+				$user->setQuoteNumber( $user->getQuoteNumber() - 1);
+			}
+
+			// If it equals 0, then we disabled the account and logout.
+			if ($user->getQuoteNumber() === 0) {
+				$user->setEnabled(false);
+				$this->get('security.context')->setToken(null);
+				$this->get('request')->getSession()->invalidate();
+			}
+
+			$userManager->updateUser($user, true);
 			
 			return $this->redirect($this->generateUrl('quoty_quote_view', array('id' => $quote->getId())));
 		}

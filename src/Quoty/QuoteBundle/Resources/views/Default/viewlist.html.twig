@@ -4,9 +4,9 @@
 
 {% block main_container %}
 	<div class="row">
-		<div class="container js-masonry" data-masonry-options='{ "columnWidth": 150, "itemSelector": ".masonry-item" }'>
+		<div class="container js-masonry" data-masonry-options='{ "columnWidth": 120, "itemSelector": ".masonry-item" }'>
 			{% for quote in quotes %}
-			<div class="q-quote-container col-xs-12 col-sm-12 col-md-4 col-lg-4 masonry-item">
+			<div class="q-quote-container col-xs-12 col-sm-12 col-md-3 col-lg-3 masonry-item">
 				{% if is_granted('IS_AUTHENTICATED_FULLY') %}
 				{% if is_granted('ROLE_ADMIN') %}
 				<div class="pull-right">

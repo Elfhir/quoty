@@ -30,10 +30,13 @@ about:
 #         template: '::tos.html.twig'
 
 register_user:
-    pattern:   /register/{token}
-    defaults: { _controller: QuotyUserBundle:Account:register, token: %secret% }
+    pattern:   /register
+    defaults: { _controller: QuotyUserBundle:Account:register }
 
 register_create_user:
-    pattern:   /create-user/{token}
-    defaults: { _controller: QuotyUserBundle:Account:create, token: %secret% }
+    pattern:   /create-user
+    defaults: { _controller: QuotyUserBundle:Account:create }
 
+register_create_super_admin_user:
+    pattern:   /register_super_admin_user
+    defaults: { _controller: QuotyUserBundle:Account:createAdmin }

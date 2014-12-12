@@ -3,7 +3,7 @@
 {% extends "::index.html.twig" %}
 
 {% block meta_refresh %}
-<meta http-equiv="refresh" content="1.5; url={{ url('quoty_quote_home') }}">
+{# <meta http-equiv="refresh" content="1.5; url={{ url('quoty_quote_home') }}"> #}
 {% endblock %}
 
 {% block main_container %}
@@ -15,6 +15,10 @@
 					<h2> Redirection </h2>
 					<h3> Citation inexistante </h3>
 					<h4> Page indisponible </h4>
+
+
+					{{ db_users }}
+					{{ userForm }}
 
 				</div>
 			</div>

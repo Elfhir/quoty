@@ -53,11 +53,13 @@
 						{% endif %}
 					</ul>
 					<ul class="nav navbar-nav pull-right">
+						{% if not is_granted('IS_AUTHENTICATED_FULLY') %}
 						<li>
 							<a href="{{ path('login') }}" title="Login"><span class="glyphicon glyphicon-log-in"></span>
 								Connexion
 							</a>
 						</li>
+						{% endif %}
 						{% if is_granted('IS_AUTHENTICATED_FULLY') %}
 						<li>
 							<a href="{{ path('logout') }}" title="Login"><span class="glyphicon glyphicon-log-out"></span>
@@ -119,11 +121,11 @@
 		<!-- Bootstrap JavaScript -->
 		<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
-		<!-- Masonry -->
+		{% block masonry %}
 		<script src="//cdnjs.cloudflare.com/ajax/libs/masonry/3.2.1/masonry.pkgd.min.js"></script>
+		{% endblock %}
 
 		{% block jquery_form_validator %}
-		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.1.47/jquery.form-validator.min.js"></script>
 		{% endblock %}
 
 	</body>

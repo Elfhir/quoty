@@ -23,13 +23,15 @@ class LoadUser extends ContainerAware implements FixtureInterface
 				'name' => 'Elsa',
 				'plainPassword' => 'letitgo',
 				'email'=> 'elsa@arendelle.dk',
-				'enable' => true
+				'enable' => true,
+				'quoteNumber' => 5
 			),
 			array(
 				'name' => 'Anna',
 				'plainPassword' => 'snowman',
 				'email'  => 'anna@arendelle.dk',
-				'enable' => true
+				'enable' => true,
+				'quoteNumber' => 5
 			)
 		);
 
@@ -48,7 +50,7 @@ class LoadUser extends ContainerAware implements FixtureInterface
 			$user->setUsername($list['name']);
 			$user->setEmail($list['email']);
 			$user->setEnabled($list['enable']);
-
+			$user->setQuoteNumber($list['quoteNumber']);
 			$user->setRoles(array('ROLE_USER'));
 			
 			// We have to use FOS userManager because it will encrypt the password ;

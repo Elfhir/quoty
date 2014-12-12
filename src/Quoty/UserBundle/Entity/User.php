@@ -4,12 +4,18 @@ namespace Quoty\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * User
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Quoty\UserBundle\Entity\UserRepository")
+ * @UniqueEntity("email")
+ * @UniqueEntity("username")
+ * @UniqueEntity("emailCanonical")
+ * @UniqueEntity("usernameCanonical")
  */
 class User extends BaseUser
 {
@@ -27,6 +33,15 @@ class User extends BaseUser
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="quoteNumber", type="integer")
+     *
+     * 
+     */
+    protected $quoteNumber;
 
 	/**
 	 * @var string
@@ -107,5 +122,28 @@ class User extends BaseUser
 	 */
 	protected $roles;
 
+	/**
+     * Returns the user QuoteNumber
+     * How many quote he can still post (it will
+     * decreased )
+     *
+     * @return mixed
+     */
+    public function getQuoteNumber()
+    {
+        return $this->quoteNumber;
+    }
+	
+	/**
+     * Set the QuoteNumber
+     *
+     * @return mixed
+     */
+    public function setQuoteNumber($quoteNumber)
+    {
+    	$this->quoteNumber = (integer) $quoteNumber;
+
+        return $this->quoteNumber;
+    }
 
 }
