@@ -21,3 +21,11 @@ about:
     defaults:
         _controller: FrameworkBundle:Template:template
         template: '::about.html.twig'
+
+register_user:
+    pattern:   /register
+    defaults: { _controller: QuotyUserBundle:Account:register }
+
+register_create_user:
+    pattern:   /register
+    defaults: { _controller: QuotyUserBundle:Account:register }

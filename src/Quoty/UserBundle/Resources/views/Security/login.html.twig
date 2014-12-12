@@ -10,12 +10,10 @@
 			<h2><span class="glyphicon glyphicon-log-in btn-lg"></span> Connexion </h2>
 			<div class="well">
 
-				{# S'il y a une erreur, on l'affiche dans un joli cadre #}
 				{% if error %}
 				<div class="alert alert-danger">{{ error.message }}</div>
 				{% endif %}
 
-				{# Le formulaire, avec URL de soumission vers la route « login_check » comme on l'a vu #}
 				<form role="form" class="form-horizontal" action="{{ path('login_check') }}" method="post">
 					<fieldset class="input-group">
 						<label class="col-lg-6"for="username">Login :</label>

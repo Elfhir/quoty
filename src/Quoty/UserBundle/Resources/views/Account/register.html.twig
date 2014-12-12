@@ -1,0 +1,40 @@
+{# src/Quoty/UserBundle/Resources/views/Account/register.html.twig #}
+
+{% extends "::index.html.twig" %}
+
+{% block title %}QuotyUserBundle:Security:login{% endblock %}
+
+
+{% block main_container %}
+
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-md-offset-4 col-lg-offset-4">
+			<h2><span class="glyphicon glyphicon-log-in btn-lg"></span> Connexion </h2>
+			<div class="well">
+
+
+				<form action="{{ path('register_create_user')}}" method="post" {{ form_enctype(form) }} class="form-horizontal">
+
+{# 				<div class="form-group">
+					{{ form_label(form.user.username, "Auteur", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+
+					{{ form_errors(form.user.username) }}
+
+					<div class="col-sm-4">
+						{{ form_widget(form.user.username, {'attr': {'class': 'form-control', 'required': 'required'}}) }}
+					</div>
+				</div>
+ #}
+
+
+
+				<input type="submit" class="btn btn-primary pull-right col-sm-3" />
+	
+				{{ form_end(form) }}
+
+
+			</div>
+		</div>
+	</div>
+
+{% endblock %}

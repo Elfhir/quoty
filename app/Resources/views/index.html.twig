@@ -64,17 +64,24 @@
 								Déconnexion
 							</a>
 						</li>
-						{% endif %}	
+						{% else %}
+						<li>
+							<a href="{{ path('register_user') }}" title="Login"><span class="glyphicon glyphicon-user"></span>
+								Inscription
+							</a>
+						</li>
+						{% endif %}
 					</ul>
 				</div>
 			</div>
 
-
+			{% if not is_granted('IS_AUTHENTICATED_FULLY') %}
 			<div class="fluid-container q-slogan-container">
 				<div class="text-center">
 					<em>Inscrivez vous, et ajoutez votre citation préférée !</em>
 				</div>
 			</div>
+			{% endif %}
 
 			{% endblock %}
 
